@@ -9,17 +9,19 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-
+import PINRemoteImage
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var ref:FIRDatabaseReference!
     var data = [DataModel]()
     
+
     
     @IBOutlet weak var mytable: UITableView!
     
     
     override func viewDidLoad() {
+        
         
         doSetup()
         
@@ -32,7 +34,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func doSetup(){
    
+        
         ref = FIRDatabase.database().reference()
+        //ref.child("Posts").childByAutoId().setValue(["post_text":" Nami ","imageUrl" : ""])
         ref.child("Posts").observe(.childAdded, with: { (snapshot) in
             
             let newData = snapshot.value as! [String:String]
@@ -45,8 +49,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.data.append(converted)
             
             self.mytable.reloadData()
-            
         })
+
     }
     
     
@@ -58,10 +62,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
         
         let nth_data = data[indexPath.row]
-        let doto
         cell.posttext.text = nth_data.post_text
-        cell.myimage.image = UIImage(data: nth_data.imageUrl!)
-        
+        cell.posttext.textColor = .white
+        cell.myimage.pin_setImage(from: URL(string: nth_data.imageUrl!))
+        cell.backgroundColor = UIColor(red: 138/255, green: 56/255, blue: 48/255, alpha: 1.0)
         return (cell)
     }
 
@@ -75,8 +79,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-   
     
-  
 }
 
