@@ -14,9 +14,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var ref:FIRDatabaseReference!
     var data = [DataModel]()
+        @IBOutlet weak var one: UIImageView!
     
 
     
+    @IBAction func Logout(_ sender: Any) {
+        
+        
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var mytable: UITableView!
     
     
@@ -24,7 +30,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         doSetup()
-        
+        self.view.backgroundColor = UIColor(red: 138/255, green: 56/255, blue: 48/255, alpha: 1.0)
+
         mytable.dataSource = self
         mytable.delegate = self
         
@@ -49,6 +56,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.data.append(converted)
             
             self.mytable.reloadData()
+            
+            self.one.pin_setImage(from: URL(string : "https://otaku-w9pxf76zfsktmx3e.stackpathdns.com/wp-content/uploads/2016/06/Luffy.png"))
+            
+           
         })
 
     }
@@ -66,6 +77,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.posttext.textColor = .white
         cell.myimage.pin_setImage(from: URL(string: nth_data.imageUrl!))
         cell.backgroundColor = UIColor(red: 138/255, green: 56/255, blue: 48/255, alpha: 1.0)
+        tableView.backgroundColor = UIColor(red: 138/255, green: 56/255, blue: 48/255, alpha: 1.0)
         return (cell)
     }
 
