@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import PINRemoteImage
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var ref:FIRDatabaseReference!
@@ -22,6 +23,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         self.dismiss(animated: true, completion: nil)
+        
     }
     @IBOutlet weak var mytable: UITableView!
     
@@ -43,7 +45,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    
         
         ref = FIRDatabase.database().reference()
-        //ref.child("Posts").childByAutoId().setValue(["post_text":" Nami ","imageUrl" : ""])
+        //ref.child("Posts").childByAutoId().setValue(["post_text":" Trafalgar D. Water Law ","imageUrl" : ""])
         ref.child("Posts").observe(.childAdded, with: { (snapshot) in
             
             let newData = snapshot.value as! [String:String]

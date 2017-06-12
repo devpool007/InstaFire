@@ -62,6 +62,7 @@ class LogIn: UIViewController {
             if error != nil {
                 
                 self.email.placeholder = "Incorrect Email or Password"
+                self.info.text = "Or no Internet"
                 self.password.text = ""
                 
                
@@ -72,6 +73,8 @@ class LogIn: UIViewController {
             else {
                
                 self.performSegue(withIdentifier: "go", sender: self)
+                self.info.text = ""
+                self.email.placeholder = "Enter email"
 
 
 
