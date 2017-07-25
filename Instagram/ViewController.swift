@@ -59,7 +59,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.mytable.reloadData()
             
-            self.one.pin_setImage(from: URL(string : "https://otaku-w9pxf76zfsktmx3e.stackpathdns.com/wp-content/uploads/2016/06/Luffy.png"))
+            self.one.image = #imageLiteral(resourceName: "Luffy")
             
            
         })
